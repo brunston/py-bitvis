@@ -7,7 +7,7 @@ try:
     from flask import Flask
     from fitbit.api import Fitbit
 except ImportError:
-    raise PythonBitVisException('python-bitvis requires flask, python-fitbit')
+    raise PyBitVisException('py-bitvis requires flask, python-fitbit')
 
 class AuthenticationServer:
     def __init__(self,
@@ -20,7 +20,7 @@ class AuthenticationServer:
         self.fitbit = Fitbit(fb_client_id, fb_client_secret,
                              redirect_uri=redirect_url,
                              timeout=15)
-        
+    
 
 if __name__ == '__main__':
     client_tokens = []
@@ -28,8 +28,8 @@ if __name__ == '__main__':
         with open('fitbit_client_tokens.pri') as f:
             client_tokens = [token.strip() for token in f.readlines()]
     except FileNotFoundError:
-        raise PythonBitVisException('fitbit_clients_tokens.pri not found. '
-                                    'Consult the README')
+        raise PyBitVisException('fitbit_clients_tokens.pri not found. '
+                                'Consult the README')
 
-class PythonBitVisException(Exception):
-    """python-bitvis exception"""
+class PyBitVisException(Exception):
+    """py-bitvis exception"""
